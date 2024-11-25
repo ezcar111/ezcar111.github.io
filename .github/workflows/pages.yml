@@ -26,13 +26,13 @@ jobs:
     steps:
       # Checkout the repository
       - name: Checkout
-        uses: actions/checkout@v4 # 업데이트된 최신 버전
+        uses: actions/checkout@v3 # 최신 안정 버전 사용
 
       # Setup Ruby
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v2 # 최신 버전으로 업데이트
+        uses: ruby/setup-ruby@v1 # 안정적인 v1 버전 사용
         with:
-          ruby-version: '3.0.4' # 명확한 버전 지정
+          ruby-version: '3.0.4' # GitHub Pages 호환 버전
           bundler-cache: true # Bundler 캐시 활성화
 
       # Setup Pages
