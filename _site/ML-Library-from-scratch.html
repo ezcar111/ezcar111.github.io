@@ -395,14 +395,14 @@
 <p>As you can see, when plotted in an X,Y plane, the logical operators AND and OR have a line that can clearly separate the points that are false from the ones that are true, hence a perceptron can easily learn to classify them; however, for XOR there is no single straight line that can do so, therefore a multilayer perceptron is needed for the task.</p>
 
 <p>For the test I created a neural network with my library:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">Neural_Network</span> <span class="k">as</span> <span class="n">nn</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">Neural_Network</span> <span class="k">as</span> <span class="n">nn</span>
 
 <span class="n">inputs</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">hidden_layers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="n">outputs</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.03</span>
 
-<span class="n">NN</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">NeuralNetwork</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">hidden_layers</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">)</span>
+<span class="n">NN</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">NeuralNetwork</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">hidden_layers</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>The three inputs I decided to use (after a lot of trial and error) are the X and Y coordinate of a point (between X = 0, X = 1, Y = 0 and Y = 1) and as the third input the multiplication of both X and Y. Apparently it gives the network more information, and it ends up converging much more quickly with this third input.</p>
@@ -412,15 +412,15 @@
 <p>Then I created the learning data, which is quite trivial for this problem, since we know very easily how to compute XOR.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">training_data</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">learning_rounds</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">rnd</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">rnd</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span>
-    <span class="n">training_data</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.5</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mf">0.5</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">learning_rounds</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">rnd</span><span class="p">.</span><span class="n">random</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">rnd</span><span class="p">.</span><span class="n">random</span><span class="p">()</span>
+    <span class="n">training_data</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.5</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mf">0.5</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p>And off we go into training:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">training_data</span><span class="p">:</span>
-    <span class="n">NN</span><span class="p">.</span><span class="nf">train</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">3</span><span class="p">].</span><span class="nf">reshape</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">:].</span><span class="nf">reshape</span><span class="p">(</span><span class="n">outputs</span><span class="p">))</span>
+    <span class="n">NN</span><span class="p">.</span><span class="n">train</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">3</span><span class="p">].</span><span class="n">reshape</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">:].</span><span class="n">reshape</span><span class="p">(</span><span class="n">outputs</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>The ML library can only train on batches of 1 (another self-imposed coding restriction), therefore only one “observation” at a time, this is why the train function accepts two parameters, one is the inputs packed in an array, and the other one is the outputs, packed as well in an array.</p>
@@ -429,29 +429,29 @@
 
 <p>This was plotted in MatPlotLib, so we needed to do some housekeeping first:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="p">.</span><span class="n">canvas</span><span class="p">.</span><span class="nf">set_window_title</span><span class="p">(</span><span class="sh">'</span><span class="s">Learning XOR Algorithm</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">.</span><span class="nf">set_size_inches</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">canvas</span><span class="p">.</span><span class="n">set_window_title</span><span class="p">(</span><span class="s">'Learning XOR Algorithm'</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
-<span class="n">axs1</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="nf">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="sh">'</span><span class="s">3d</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">axs2</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="nf">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">axs1</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">'3d'</span><span class="p">)</span>
+<span class="n">axs2</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Then we need to prepare the data to be plotted by generating X and Y values distributed between 0 and 1, and having the network calculate the Z value:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_surface_points</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_surface_points</span><span class="p">)</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_surface_points</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_surface_points</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">NN</span><span class="p">.</span><span class="nf">forward_propagation</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">])).</span><span class="nf">reshape</span><span class="p">(</span><span class="n">num_surface_points</span><span class="p">,</span> <span class="n">num_surface_points</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">NN</span><span class="p">.</span><span class="n">forward_propagation</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">])).</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_surface_points</span><span class="p">,</span> <span class="n">num_surface_points</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>As you can see, the z values array is reshaped as a 2d array of shape (x,y), since this is the way Matplotlib interprets it as a surface:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">axs1</span><span class="p">.</span><span class="nf">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">axs1</span><span class="p">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span>
                   <span class="n">rstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                   <span class="n">cstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                  <span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">viridis</span><span class="sh">'</span><span class="p">,</span>
+                  <span class="n">cmap</span><span class="o">=</span><span class="s">'viridis'</span><span class="p">,</span>
                   <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                   <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                   <span class="n">antialiased</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -462,12 +462,12 @@
 
 <p>Then we reshape the z array as a one dimensional array to use it to color the scatter plot:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">num_surface_points</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">scatter</span> <span class="o">=</span> <span class="n">axs2</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
-                       <span class="n">marker</span><span class="o">=</span><span class="sh">'</span><span class="s">o</span><span class="sh">'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_surface_points</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">axs2</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+                       <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">,</span>
                        <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
-                       <span class="n">c</span><span class="o">=</span><span class="n">z</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
-                       <span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">viridis</span><span class="sh">'</span><span class="p">,</span>
+                       <span class="n">c</span><span class="o">=</span><span class="n">z</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+                       <span class="n">cmap</span><span class="o">=</span><span class="s">'viridis'</span><span class="p">,</span>
                        <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                        <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
