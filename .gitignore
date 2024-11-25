@@ -1,13 +1,16 @@
+# Build 폴더 무시 (Jekyll이 생성하는 파일)
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
 
+# 운영 체제 및 IDE 파일 무시
 .DS_Store
-/.idea/inspectionProfiles/profiles_settings.xml
-/.idea/.gitignore
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/the-mvm.github.io.iml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/vcs.xml
-/.vscode/settings.json
-/.vscode/
-/.idea/
-.liquidrc
+*.swp
+.idea/
+.vscode/
+
+# Ruby 관련
+*.gem
+*.rbc
+vendor/
