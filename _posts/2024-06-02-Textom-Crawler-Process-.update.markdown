@@ -61,6 +61,7 @@ mathjax: yes
 - **loop 구조 생성, 작업 상태 모니터링 및 동적 작업 분배**
   - Master는 반복적으로 작업 요청을 처리할 수 있는 loop 구조를 생성
   - DB를 지속적으로 확인하며, 새로운 작업 발생시 Slave에게 동적으로 작업을 분배
+
 ``` python
 class ComManager(Com):
 
@@ -140,10 +141,13 @@ def run():
 if __name__ == "__main__":
    run()
 ```
+
 - **DAO(Data Access Object)생성**
   - **데이터베이스 접근 캡슐화** : 수집사이트(Naver, Daum, Google 등) 각각의 DAO를 별도 생성하여 데이터베이스 쿼리와 연관된 모든 작업을 수행
   - **작업 대기(Task Queue) 관리**: `select_wait_task` 메서드를 통해 특정 조건에 부합하는 대기 작업(수집할 키워드와 관련 데이터)을 데이터베이스에서 조회하여 반환합니다. 이를 통해 작업 상태를 효율적으로 모니터링하고 관리합니다.
   - **작업 상태 업데이트**: `update_state_to_finish` 메서드는 수집 작업 완료 후 데이터를 업데이트하며, 작업 상태와 키워드 상태를 변경하여 프로세스의 일관성을 유지합니다.
+  
+
 ``` python
 import os, sys, time
 import yaml, random, pickle
@@ -206,6 +210,8 @@ def update_state_S_to_Y(channel):
     return dao.update_state_S_to_Y()
 
 ```
+
+
 ``` python
 import os, sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
@@ -252,10 +258,12 @@ class NaverDAO(BaseDAO):
             query = f"UPDATE keyword_list SET naver_status = 'merge' WHERE idx = {k_idx}"
             self.exec(query)
 ```
+
 #### 2. Slave 동작 프로세스
 - **피클(Cache 또는 Serialize) 관리**
   - 수집 사이트별 크롤러와 관련된 메타데이터, 상태 정보, 설정을 직렬화(Serialize)하여 .pickle 파일로 저장
   - 피클은 캐싱처럼 동작하며, Slave가 실행될 때 초기화 데이터를 로드하거나 이전 상태를 복구하는 데 활용
+
 
 ``` python
 from earthling.handler.dao.NaverDAO import NaverDAO
@@ -325,6 +333,8 @@ if __name__ == "__main__":
 - **gRPC 기반 통신 및 작업 처리**
   - Slave는 Master로부터 gRPC를 통해 작업을 수신하고, 크롤링 작업을 수행하며 결과를 Master에 전달
   - 작업 요청과 결과 전달은 실시간으로 이루어지며, 유휴 상태(Idle Count)를 관리하여 작업 효율성을 극대화
+
+
 ``` python
 class ComAssistant(Com):
     def __init__(self, decorator):
