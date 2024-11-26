@@ -5,7 +5,7 @@ show_date: true
 title:  Textom Crawler Process update
 date:   2024-06-02 13:00:00 -0600
 description: 텍스톰 수집 과부화 문제를 해결하고 효율성을 높이기 위한 Master-Slave 구조 업데이트
-img: assets/img/posts/20210125/Perceptron.jpg 
+img: posts/20240602/textom_logo.png
 tags: [crawling, web service, distributed system, performance, optimization]
 author: Huiseong Kwon
 github: ezcar111/textom_cube
