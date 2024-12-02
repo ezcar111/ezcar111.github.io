@@ -2,7 +2,7 @@
 layout: post
 read_time: true
 show_date: true
-title:  Textom24 update
+title:  Textom24 sentiment analysis update
 date:   2024-06-01 13:00:00 -0600
 description: 텍스톰 24 업데이트에 따른 기능 변화 및 구조 업데이트
 img: posts/20240602/textom_logo.png
@@ -11,7 +11,7 @@ author: Huiseong Kwon
 mathjax: yes
 ---
 
-## 텍스톰24 업데이트에 따른 구조 및 분석 코드 업데이트
+## 텍스톰24 감성분석 연구 및 코드 작성
 
 ### 1.
 
